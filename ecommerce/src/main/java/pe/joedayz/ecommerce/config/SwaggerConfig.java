@@ -1,39 +1,49 @@
 package pe.joedayz.ecommerce.config;
 
+import java.util.List;
+import org.aspectj.apache.bcel.classfile.Module.Open;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.servers.Server;
 
 @Configuration
-@EnableSwagger2
 public class SwaggerConfig {
 
-  @Bean
-  public Docket productApi(){
-    return new Docket(DocumentationType.SWAGGER_2)
-        .apiInfo(getApiInfo())
-        .select()
-        .apis(RequestHandlerSelectors.basePackage("pe.joedayz.ecommerce"))
-        .paths(PathSelectors.any())
-        .build();
-  }
+  @Value("${joedayz.openapi.dev-url}")
+  private String devUrl;
 
-  private ApiInfo getApiInfo() {
-    Contact contact = new Contact("joedayz", "http://joedayz.pe", "informes@joedayz.pe");
-    return new ApiInfoBuilder()
+  @Value("${joedayz.openapi.prod-url}")
+  private String prodUrl;
+  @Bean
+  public OpenAPI getApiInfo() {
+
+    Server devServer = new Server();
+    devServer.setUrl(devUrl);
+    devServer.setDescription("Server URL in Development environment");
+
+    Server prodServer = new Server();
+    prodServer.setUrl(prodUrl);
+    prodServer.setDescription("Server URL in Production environment");
+
+    Contact contact = new Contact();
+    contact.setName("JoeDayz");
+    contact.setUrl("https://joedayz.pe");
+    contact.setEmail("jose.diaz@joedayz.pe");
+
+    License mitLicense = new License().name("MIT License").url("https://choosealicense.com/licenses/mit/");
+
+    Info info = new Info()
         .title("Ecommerce API")
         .description("Documentation Ecommerce api")
         .version("1.0.0")
-        .license("Apache 2.0")
-        .licenseUrl("http://www.apache.org/licences/LICENSE-2.0")
-        .contact(contact)
-        .build();
+        .license(mitLicense)
+        .contact(contact);
+
+    return new OpenAPI().info(info).servers(List.of(devServer, prodServer));
   }
 }

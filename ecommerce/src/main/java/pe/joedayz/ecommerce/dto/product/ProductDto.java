@@ -1,6 +1,7 @@
 package pe.joedayz.ecommerce.dto.product;
 
-import javax.validation.constraints.NotNull;
+
+import jakarta.validation.constraints.NotNull;
 import pe.joedayz.ecommerce.model.Product;
 
 public class ProductDto {
