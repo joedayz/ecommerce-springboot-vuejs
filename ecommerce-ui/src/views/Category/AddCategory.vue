@@ -33,7 +33,7 @@
 
 <script>
 const axios = require('axios');
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 export default {
   data() {
@@ -62,10 +62,10 @@ export default {
           'Content-Type': 'application/json'
         }
       }).then(() => {
-        swal({
-          text: "",
+        Swal.fire({
+          text: "Category Added Successfully!",
           icon: "success",
-          closeOnClickOutside: false,
+          allowOutsideClick: false,
         })
       }).catch(err => console.log(err));
     }

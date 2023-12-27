@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 
 window.axios = require('axios')
-import swal from 'sweetalert';
-window.Swal = swal;
+import Swal from 'sweetalert2';
+window.Swal = Swal;
 
 createApp(App).use(router).mount('#app')
