@@ -26,6 +26,9 @@
         <router-link style="color: white" :to="{name: 'AdminCategory'}">
           Category
         </router-link>
+        <router-link style="color: white" :to="{name: 'AdminProduct'}">
+          Products
+        </router-link>
       </div>
     </div>
   </nav>
