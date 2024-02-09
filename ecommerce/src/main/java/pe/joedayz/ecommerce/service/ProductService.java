@@ -10,7 +10,7 @@ import pe.joedayz.ecommerce.model.Product;
 import pe.joedayz.ecommerce.repository.ProductRepository;
 
 @Service
-public class ProductService {
+public class ProductService {  // Ctrl + shift + T | Shift + cmd + T
 
   @Autowired
   private ProductRepository productRepository;
@@ -45,5 +45,13 @@ public class ProductService {
     Product product = getProductFromDto(productDto, category);
     product.setId(productID);
     productRepository.save(product);
+  }
+
+  boolean foo(int bar) {
+    if(bar ==0){
+      return true;
+    }else{
+      return false;
+    }
   }
 }

@@ -6,6 +6,7 @@ import pe.joedayz.ecommerce.model.Product;
 
 public class ProductDto {
 
+  //comment 2
   private Integer id;
   private @NotNull String name;
   private @NotNull String imageURL;

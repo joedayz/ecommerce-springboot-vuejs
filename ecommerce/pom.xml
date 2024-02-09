@@ -45,6 +45,8 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!-- Cmd + Shift + O | Ctrl + shift + O  es para recargar los cambios en maven -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

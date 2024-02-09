@@ -1,39 +1,18 @@
 package pe.joedayz.ecommerce.service;
 
+import pe.joedayz.ecommerce.model.Category;
+
 import java.util.List;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import pe.joedayz.ecommerce.model.Category;
-import pe.joedayz.ecommerce.repository.CategoryRepository;
 
-@Service
-public class CategoryService {
+public interface CategoryService {  // CTrl + B | Cmd + B
+    Category readCategory(String categoryName);
 
-  @Autowired
-  private CategoryRepository categoryRepository;
+    Optional<Category> readCategory(Integer categoryID);
 
-  public Category readCategory(String categoryName) {
-    return categoryRepository.findByCategoryName(categoryName);
-  }
+    void createCategory(Category category);
 
-  public Optional<Category> readCategory(Integer categoryID){
-    return categoryRepository.findById(categoryID);
-  }
+    List<Category> listCategories();
 
-  public void createCategory(Category category) {
-    categoryRepository.save(category);
-  }
-
-  public List<Category> listCategories() {
-    return categoryRepository.findAll();
-  }
-
-  public void updateCategory(Integer categoryID, Category newCategory) {
-    Category category = categoryRepository.findById(categoryID).get();
-    category.setCategoryName(newCategory.getCategoryName());
-    category.setDescription(newCategory.getDescription());
-    category.setImageUrl(newCategory.getImageUrl());
-    categoryRepository.save(category);
-  }
+    void updateCategory(Integer categoryID, Category newCategory);
 }
