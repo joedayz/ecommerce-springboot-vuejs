@@ -16,19 +16,21 @@
     </div>
   </div>
 </template>
-<script>
-import ProductBox from "@/components/Product/ProductBox.vue";
 
-export default{
+<script>
+import ProductBox from '../../components/Product/ProductBox';
+export default {
+  // eslint-disable-next-line vue/multi-word-component-names
   name: 'Product',
-  components: {ProductBox},
-  props: ["baseURL", "products"],
-  mounted() {
+  components : {ProductBox},
+  props : [ "baseURL" , "products" ],
+  mounted(){
   }
 }
 </script>
 
-<style>
+<style scoped>
+
 .card{
   width : 20rem;
   height : 24rem;

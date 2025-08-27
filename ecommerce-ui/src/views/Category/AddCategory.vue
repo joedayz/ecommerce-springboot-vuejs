@@ -1,34 +1,33 @@
 <template>
+
   <div class="container">
     <div class="row">
       <div class="col-12 text-center">
-        <h3>Add new Category</h3>
+        <h3 class="pt-3">Add new Category</h3>
       </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-3"></div>
-    <div class="col-md-6 px-5 px-md-0">
-      <form>
-        <div class="form-group">
-          <label>Category name</label>
-          <input type="text" class="form-control" v-model="categoryName" required>
-        </div>
-        <div class="form-group">
-          <label>Description</label>
-          <input type="text" class="form-control" v-model="description" required>
-        </div>
-        <div class="form-group">
-          <label>ImageURL</label>
-          <input type="url" class="form-control" v-model="imageURL" required>
-        </div>
-        <button type="button" class="btn btn-primary" @click="addCategory">Submit</button>
-      </form>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-md-6 px-5 px-md-0">
+        <form>
+          <div class="form-group">
+            <label>Category Name</label>
+            <input type="text" class="form-control" v-model="categoryName" required>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" v-model="description" required>
+          </div>
+          <div class="form-group">
+            <label>ImageURL</label>
+            <input type="url" class="form-control" v-model="imageURL" required>
+          </div>
+          <button type="button" class="btn btn-primary" @click="addCategory">Submit</button>
+        </form>
+      </div>
+      <div class="col-3"></div>
     </div>
-    <div class="col-3"></div>
   </div>
-
 </template>
 
 <script>
@@ -36,48 +35,52 @@ const axios = require('axios');
 import Swal from 'sweetalert2';
 
 export default {
-  data() {
+  data(){
     return {
-      categoryName: null,
-      description: null,
-      imageURL: null,
+      categoryName : null,
+      description : null,
+      imageURL : null,
     }
   },
-  props: [],
-  methods: {
+  props : [],
+  methods : {
     async addCategory() {
       const newCategory = {
-        categoryName: this.categoryName,
-        description: this.description,
-        imageUrl: this.imageURL,
+        categoryName : this.categoryName,
+        description : this.description,
+        imageUrl : this.imageURL,
       };
-
-      const baseURL = "http://localhost:8080";
+      const baseURL = "http://localhost:8080/";
 
       await axios({
         method: 'post',
-        url: baseURL + "/category/create",
-        data: JSON.stringify(newCategory),
+        url: baseURL+"category/create",
+        data : JSON.stringify(newCategory),
         headers: {
           'Content-Type': 'application/json'
         }
-      }).then(() => {
-        Swal.fire({
-          text: "Category Added Successfully!",
-          icon: "success",
-          allowOutsideClick: false,
-        })
-      }).catch(err => console.log(err));
+      })
+          .then(() => {
+            Swal.fire({
+              text: "Category Added Successfully!",
+              icon: "success",
+              allowOutsideClick: false,
+            })
+          })
+          .catch(err => console.log(err));
+
+    },
+    mounted(){
     }
-  },
-  mounted() {
   }
 }
 </script>
 
-<style scoped>
+
+
+<style >
 h4 {
-  font-family: 'Roboto', 'sans-serif';
+  font-family: 'Roboto', sans-serif;
   color: #484848;
   font-weight: 700;
 }

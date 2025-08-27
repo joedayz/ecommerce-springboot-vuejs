@@ -1,0 +1,15 @@
+# Development environment configuration EXAMPLE
+# Copy this file to application-dev.properties and fill in your actual values
+# This file is safe to commit to git as it contains no real secrets
+
+# Database configuration
+spring.datasource.url=jdbc:mysql://localhost:3307/ecommerce?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+
+# Stripe configuration
+# Get your keys from: https://dashboard.stripe.com/apikeys
+STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key_here
+
+# Application configuration
+BASE_URL=http://localhost:8081/

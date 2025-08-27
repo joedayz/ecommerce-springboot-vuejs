@@ -10,34 +10,44 @@
                    :categories="categories"
                    @fetchData="fetchData">
       </router-view>
+      <router-view v-else
+                   :baseURL="baseURL"
+                   @fetchData="fetchData">
+      </router-view>
     </div>
     <Footer />
   </div>
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
-import Footer from "./components/Footer.vue"
 
-const axios = require('axios');
-export default{
+import Navbar from "@/components/Navbar.vue";
+import Footer from "@/components/Footer.vue";
+
+const axios = require("axios");
+
+export default {
   data(){
-    return{
-      baseURL: "http://localhost:8080",
+    return {
+      baseURL : "http://localhost:8080/",
       products: null,
       categories: null
     }
   },
-  components: {Navbar, Footer},
+  components: {
+    Footer,
+    Navbar
+
+  },
   methods: {
     async fetchData(){
-      //get products
-      await axios.get(this.baseURL + "/product/")
+      // fetch products
+      await axios.get(this.baseURL + "product/")
           .then(res => this.products = res.data)
           .catch(err => console.log(err))
+      // fetch categories
 
-      //get categories
-      await axios.get(this.baseURL + "/category/")
+      await axios.get(this.baseURL + "category/")
           .then(res => this.categories = res.data)
           .catch(err => console.log(err))
     }
@@ -47,7 +57,9 @@ export default{
   }
 }
 
+
 </script>
+
 
 <style>
 #app {
@@ -58,16 +70,12 @@ export default{
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
+nav a {
   font-weight: bold;
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
+nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>

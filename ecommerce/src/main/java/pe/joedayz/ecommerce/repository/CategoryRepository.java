@@ -7,5 +7,5 @@ import pe.joedayz.ecommerce.model.Category;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
-  Category findByCategoryName(String categoryName);
+    Category findByCategoryName(String categoryName);
 }

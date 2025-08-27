@@ -39,12 +39,12 @@
     </div>
   </div>
 </template>
+
 <script>
 var axios = require('axios');
 import Swal from 'sweetalert2';
-
 export default {
-  data(){
+  data() {
     return {
       id: null,
       categoryId: 0,
@@ -71,7 +71,7 @@ export default {
         url: this.baseURL + '/product/update/' + this.id,
         data: JSON.stringify(updatedProduct),
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         }
       }).then( ()=>{
         this.$emit("fetchData");
@@ -82,7 +82,7 @@ export default {
           allowOutsideClick: false
         });
       })
-      .catch(err => console.log(err));
+          .catch(err => console.log(err));
     }
   },
   mounted() {
@@ -95,11 +95,11 @@ export default {
     this.price = this.products[this.productIndex].price;
 
   }
+
+
 }
 
-
 </script>
-
 
 <style>
 h4 {

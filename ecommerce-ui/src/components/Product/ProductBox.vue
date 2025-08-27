@@ -4,9 +4,10 @@
       <img class="card-img-top embed-responsive-item" :src="product.imageURL" alt="Product Image">
     </div>
     <div class="card-body">
-      <h3 class="card-title">{{ product.name }}</h3>
-      <p class="card-text"><sup>$</sup>{{ product.price}}</p>
-      <p class="card-text font-italic">{{ product.description.substring(0,65) }}...</p>
+      <router-link :to="{ name: 'ShowDetails', params: { id : product.id } }"><h5 class="card-title">{{product.name}}</h5></router-link>
+      <h5 class="card-title">{{product.name}}</h5>
+      <p class="card-text"><sup>$</sup>{{product.price}}</p>
+      <p class="card-text font-italic">{{product.description.substring(0,65)}}...</p>
       <router-link id="edit-product" :to="{name : 'EditProduct', params : {id : product.id} }" v-show="$route.name=='AdminProduct'">
         Edit
       </router-link>
@@ -15,14 +16,14 @@
 </template>
 
 <script>
-  export default{
-    name: "ProductBox",
-    props: ["product"],
-    methods:{
-
-    }
+export default {
+  name : "ProductBox",
+  props : ["product"],
+  methods : {
   }
+}
 </script>
+
 <style scoped>
 
 .embed-responsive .card-img-top {
@@ -50,5 +51,7 @@ a {
 #edit-product {
   float: right;
 }
+
+
 
 </style>

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 text-center">
-        <h3 class="pt-3">Add new Product</h3>
+        <h4 class="pt-3">Add new Product</h4>
       </div>
     </div>
 
@@ -11,41 +11,42 @@
       <div class="col-md-6 px-5 px-md-0">
         <form>
           <div class="form-group">
-            <label >Category</label>
+            <label>Category</label>
             <select class="form-control" v-model="categoryId" required>
-              <option v-for="category of categories" :key="category.id" :value="category.id">{{category.categoryName}}</option>
+              <option v-for="category of categories" :key="category.id" :value="category.id">
+                {{ category.categoryName }}
+              </option>
             </select>
           </div>
           <div class="form-group">
             <label>Name</label>
-            <input type="text" class="form-control"  v-model="name" required>
+            <input type="text" class="form-control" v-model="name" required>
           </div>
           <div class="form-group">
             <label>Description</label>
             <input type="text" class="form-control" v-model="description" required>
           </div>
           <div class="form-group">
-            <label>Image URL</label>
-            <input type="url" class="form-control"  v-model="imageURL" required>
+            <label>ImageURL</label>
+            <input type="url" class="form-control" v-model="imageURL" required>
           </div>
           <div class="form-group">
             <label>Price</label>
-            <input type="number" class="form-control"  v-model="price" required>
+            <input type="number" class="form-control" v-model="price" required>
           </div>
           <button type="button" class="btn btn-primary" @click="addProduct">Submit</button>
         </form>
       </div>
-      <div class="col-3"></div>
     </div>
-
   </div>
 </template>
+
 <script>
-var axios = require('axios');
+var axios = require('axios')
 import Swal from 'sweetalert2';
 
 export default {
-  data(){
+  data() {
     return {
       categoryId: null,
       name: null,
@@ -56,21 +57,22 @@ export default {
   },
   props: ["baseURL", "categories"],
   methods: {
-   async addProduct(){
-     const newProduct = {
-       categoryId: this.categoryId,
-       name: this.name,
-       description: this.description,
-       imageURL: this.imageURL,
-       price: this.price
-     }
+    async addProduct() {
 
-     await axios({
+      const newProduct = {
+        categoryId: this.categoryId,
+        name: this.name,
+        description: this.description,
+        imageURL: this.imageURL,
+        price: this.price
+      }
+
+      await axios({
         method: 'post',
         url: this.baseURL + '/product/add',
         data: JSON.stringify(newProduct),
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         }
       }).then(() => {
         Swal.fire({
@@ -79,17 +81,15 @@ export default {
           icon: 'success',
           allowOutsideClick: false
         });
-     }).catch(err => console.log(err));
-
-   }
+      }).catch(err => console.log(err));
+    }
   },
-  mounted(){
+  mounted() {
 
   }
+
 }
-
 </script>
-
 <style scoped>
 h4{
   font-family: 'Roboto', sans-serif;
@@ -97,4 +97,3 @@ h4{
   color: #484848;
 }
 </style>
-```

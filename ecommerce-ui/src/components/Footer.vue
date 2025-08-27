@@ -39,10 +39,11 @@
           </ul>
         </div>
       </div>
+
       <div class="row">
         <div class="col-12">
           <div class="text-center py-5">
-            <img id="logo" src="../assets/icon.png"/>
+            <img id="logo" src="../assets/icon.png" />
           </div>
         </div>
       </div>
@@ -52,34 +53,37 @@
 
 <script>
 export default {
-  name: "Footer"
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: "Footer",
 }
 </script>
 
 <style scoped>
-
-footer{
-  margin-top: 100px;
-  background-color: #232F3E;
-  font-size: 16px;
-  font-family: 'Roboto', 'sans-serif';
+footer {
+  margin-top : 100px;
+  background-color:#232F3E;
+  font-size:16px;
 }
 
-li{
+li {
   padding-left: 0;
   padding-bottom: 10px;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-.footer-link{
-  color: #DDD
+.footer-link {
+  color: #DDD;
 }
 
-#logo{
+#logo {
   width: 150px;
+}
+
+footer {
+  font-family: 'Roboto', sans-serif;
 }
 
 </style>
